@@ -28,7 +28,8 @@
             <div class="card-header">
                 <h2>Current Reservations</h2>
             </div>
-            <div class="card-body">
+            <div id="resDisplay" class="card-body">
+
             </div>
         </div>
 
@@ -37,9 +38,38 @@
             <div class="card-header">
                 <h2>Waiting List</h2>
             </div>
-            <div class="card-body">
+            <div id="waitDisplay" class="card-body">
 
             </div>
+
+            <script>
+            $.get("/api/tables", function(data) {
+            for (var i = 0; i < data.length; i++) {
+          console.log(data[i]);
+          var listGroupItem = $("<li class='list-group-item'>");
+
+          listGroupItem.append($("<h2>").text("Name: " + data[i].reserveName));
+          listGroupItem.append($("<h3>").text("Phone: " + data[i].reservePhone));
+          listGroupItem.append($("<h3>").text("Email: " + data[i].reserveEmail));
+          listGroupItem.append($("<h3>").text("ID: " + data[i].reserveUniqueID));
+
+          $("#resDisplay").append(listGroupItem);
+        }
+        });
+        $.get("/api/tables", function(data) {
+            for (var i = 0; i < data.length; i++) {
+          console.log(data[i]);
+          var listGroupItem = $("<li class='list-group-item'>");
+
+          listGroupItem.append($("<h2>").text("Name: " + data[i].reserveName));
+          listGroupItem.append($("<h3>").text("Phone: " + data[i].reservePhone));
+          listGroupItem.append($("<h3>").text("Email: " + data[i].reserveEmail));
+          listGroupItem.append($("<h3>").text("ID: " + data[i].reserveUniqueID));
+
+          $("#waitDisplay").append(listGroupItem);
+          }
+        });
+            </script>
 </body>
 
 </html>

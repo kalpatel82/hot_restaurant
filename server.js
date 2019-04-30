@@ -34,7 +34,7 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
   
-  app.get("/all", function(req, res) {
+  app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
   });
 
@@ -67,7 +67,7 @@ app.get("/api/tables", function(req, res) {
   //===========================================================
 
 // Get new table data entry from POST
-app.post("/api/new", function(req, res) {
+app.post("/api/tables", function(req, res) {
     var tableData = req.body;
     console.log(tableData);
     if (tableData && tableData.name) {

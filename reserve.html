@@ -32,7 +32,8 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          
+            <form>
             <div class="form-group">
               <label for="reserve-name">Name</label>
               <input type="text" class="form-control" id="reserve-name">
@@ -55,6 +56,28 @@
       </div>
     </div>
   </div>
+  
+  <script type="text/javascript">
+    $(".submit").on("click", function(event) {
+        event.preventDefault();
+        var newReservatation = {
+      reserveName: $("#reserve-name").val().trim(),
+      reservePhone: $("#reserve-phone").val().trim(),
+      reserveEmail: $("#reserve-email").val().trim(),
+      reserveUniqueID: $("#reserve-unique-id").val().trim(),
+    }
+      $.post("/api/tables", newReservatation, function(data) {
+        console.log(data);
+        if (data) {
+          $("#reserve-name").val("");
+          $("#reserve-phone").val("");
+          $("#reserve-email").val("");
+          $("#reserve-unique-id").val("");
+        }
+        
+      });
+    });
+  </script>
 
 
 </body>
